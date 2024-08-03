@@ -75,7 +75,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <button class="btn btn-primary btn-sm btn-block">Update Cart</button>
+                                <a href="{{ route('order.create') }}" class="btn btn-primary btn-sm btn-block">Proceed Checkout</a>
                             </div>
                             <div class="col-md-6">
                                 <a href="{{ url('') }}" class="btn btn-outline-primary btn-sm btn-block">Continue

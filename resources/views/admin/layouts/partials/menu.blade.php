@@ -27,9 +27,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('banner.list')}}">
                     <span data-feather="bar-chart-2"></span>
-                    Báo cáo
+                    Banner
                 </a>
             </li>
             <li class="nav-item">

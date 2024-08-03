@@ -28,6 +28,7 @@ class ProductController extends Controller
     {
         $data['sanpham'] = DB::table('products')->get();
         $data['danhmuc'] = DB::table('categories')->get();
+        $data['post'] = DB::table('banners')->get();
         // dd($data);
         return view('client.index', $data);
 
@@ -62,7 +63,7 @@ class ProductController extends Controller
         // dd($request);
         // $danhmuc = DB::table('categories')->get();
         if ($request->hasFile('img')) {
-            $url = Storage::put('img', $request->file('img'));
+            $url = Storage::put('/public/img', $request->file('img'));
         } else {
             $url = '';
         }
@@ -109,7 +110,7 @@ class ProductController extends Controller
     {
         // dd($request);
         if ($request->hasFile('img')) {
-            $url = Storage::put('img', $request->file('img'));
+            $url = Storage::put('/public/img', $request->file('img'));
         } else {
             $url = '';
         }

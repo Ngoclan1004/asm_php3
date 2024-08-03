@@ -1,10 +1,17 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Middleware\IsAdmin;
+use App\Http\Middleware\IsMember;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -59,7 +66,7 @@ Route::prefix('product')
     ->controller(ProductController::class)
     ->group(function () {
 
-        Route::get('/',  'indexUser')->name('user.index');
+        // Route::get('/',  'indexUser')->name('user.index');
         Route::get('{id}',  'detail')->name('product.detail');
         Route::get('show/{id}',  'show')->name('products.show');
         Route::get('cart.{id}', 'addToCart')->name('addproduct.to.cart');
@@ -68,3 +75,41 @@ Route::prefix('product')
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware('auth')->prefix('order')
+    // ->name('product.')
+    ->controller(OrderController::class)
+    ->group(function () {
+
+        Route::get('list', 'index')->name('order.list');
+   
+
+        Route::get('create', 'create')->name('order.create');
+        Route::post('store', 'store')->name('order.store');
+
+        Route::get('show/{id}',  'show')->name('order.show');
+
+        Route::put('{id}/update', 'update')->name('order.update');
+    });
+
+// Banner
+Route::prefix('banner')
+    // ->name('product.')
+    ->controller(BannerController::class)
+    ->group(function () {
+        Route::get('list', 'index')->name('banner.list');
+        // Route::get('bannerUser', 'indexUser')->name('bannerUser.list');
+
+        Route::get('create', 'create')->name('banner.create');
+        Route::post('store', 'store')->name('banner.store');
+
+        Route::delete('{id}/destroy', 'destroy')->name('banner.destroy');
+
+        Route::get('{id}/edit', 'edit')->name('banner.edit');
+        Route::put('{id}/update', 'update')->name('banner.update');
+    });
+    
+    Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware(['auth', IsAdmin::class]);
+    Route::get('/member', [MemberController::class, 'dashboard'])->name('member.dashboard')->middleware(['auth', IsMember::class]);
+
+    Route::get('homebanner', [BannerController::class, 'indexUser'])->name('homebanner');

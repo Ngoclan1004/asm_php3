@@ -18,7 +18,11 @@
         </div>
     </div> --}}
     <div>
-        <img src="https://kilala.vn/data/uploads/2023/271220231621-1703668918-kimihana.jpg" alt="" width="100%">
+        {{-- <img src="https://kilala.vn/data/uploads/2023/271220231621-1703668918-kimihana.jpg" alt="" width="100%"> --}}
+    
+        @foreach ($post as $value)
+            <img src="{{ $value->img }}" alt="" width="100%">
+        @endforeach
     </div>
     <div class="site-section site-section-sm site-blocks-1">
         <div class="container">
