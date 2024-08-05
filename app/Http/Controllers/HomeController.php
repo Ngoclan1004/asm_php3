@@ -27,8 +27,8 @@ class HomeController extends Controller
     {
         $data['sanpham'] = DB::table('products')->get();
         $data['danhmuc'] = DB::table('categories')->get();
-        $data['post'] = DB::table('banners')->get();
-        dd($data);
+        // $data['post'] = DB::table('banners')->get();
+        // dd($data);
         if(Auth::user()->isAdmin()){
             return redirect()->route('admin.dashboard');
         }

@@ -44,7 +44,7 @@ Route::put('/danhmuc/{id}/update', [CategoryController::class, 'update'])->name(
 
 
 
-//User
+//Client
 
 Route::get('/', [ProductController::class, 'indexUser'])->name('user.index');
 // Route::get('/product/{id}', [ProductController::class, 'detail'])->name('product.detail');

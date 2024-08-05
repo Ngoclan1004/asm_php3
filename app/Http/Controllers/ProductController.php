@@ -29,8 +29,8 @@ class ProductController extends Controller
         $data['sanpham'] = DB::table('products')->get();
         $data['danhmuc'] = DB::table('categories')->get();
         $data['post'] = DB::table('banners')->get();
-        // dd($data);
-        return view('client.index', $data);
+        // dd($data['post']);
+        return view('client.index', compact('data'));
 
     }
 

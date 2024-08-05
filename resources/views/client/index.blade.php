@@ -20,8 +20,9 @@
     <div>
         {{-- <img src="https://kilala.vn/data/uploads/2023/271220231621-1703668918-kimihana.jpg" alt="" width="100%"> --}}
     
-        @foreach ($post as $value)
-            <img src="{{ $value->img }}" alt="" width="100%">
+        @foreach ($data['post'] as $value)
+           
+            <img src="{{ Storage::url($value->img ) }}" alt="" width="100%">
         @endforeach
     </div>
     <div class="site-section site-section-sm site-blocks-1">
@@ -69,7 +70,7 @@
     <div class="site-section site-blocks-2">
         <div class="container">
             <div class="row">
-                @foreach ($danhmuc as $value)
+                @foreach ($data['danhmuc'] as $value)
                     <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
 
                         <a class="block-2-item" href="#">
@@ -100,7 +101,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="nonloop-block-3 owl-carousel">
-                        @foreach ($sanpham as $value)
+                        @foreach ($data['sanpham'] as $value)
                             <div class="item">
                                 <div class="block-4 text-center">
                                     <figure class="block-4-image">
