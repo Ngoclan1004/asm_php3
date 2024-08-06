@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DonhangController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -76,7 +78,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware('auth')->prefix('order')
+Route::
+middleware('auth')->
+prefix('order')
     // ->name('product.')
     ->controller(OrderController::class)
     ->group(function () {
@@ -88,7 +92,7 @@ Route::middleware('auth')->prefix('order')
         Route::post('store', 'store')->name('order.store');
 
         Route::get('show/{id}',  'show')->name('order.show');
-
+        Route::get('thank-you',  'thank');
         Route::put('{id}/update', 'update')->name('order.update');
     });
 
@@ -109,7 +113,18 @@ Route::prefix('banner')
         Route::put('{id}/update', 'update')->name('banner.update');
     });
     
+    Route::prefix('donhang')
+    // ->name('product.')
+    ->controller(DonhangController::class)
+    ->group(function () {
+        Route::get('list', 'index')->name('donhang.list');
+
+        Route::get('{id}/edit', 'edit')->name('donhang.edit');
+        Route::put('{id}/update', 'update')->name('donhang.update');
+
+    });
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware(['auth', IsAdmin::class]);
     Route::get('/member', [MemberController::class, 'dashboard'])->name('member.dashboard')->middleware(['auth', IsMember::class]);
 
-    Route::get('homebanner', [BannerController::class, 'indexUser'])->name('homebanner');
+    // Route::get('homebanner', [BannerController::class, 'indexUser'])->name('homebanner');
+    Route::get('profile', [HomeController::class, 'profile'])->name('profile');

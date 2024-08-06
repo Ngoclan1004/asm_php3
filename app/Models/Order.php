@@ -40,6 +40,7 @@ class Order extends Model
     const DA_THANH_TOAN = 'da_thanh_toan';
 
     protected $fillable = [
+        'id',
         'ma_don_hang',
         'user_id',
         'ten_nguoi_nhan',

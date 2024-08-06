@@ -33,9 +33,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('donhang.list')}}">
                     <span data-feather="layers"></span>
-                    Tích hợp
+                    Đơn hàng
                 </a>
             </li>
         </ul>

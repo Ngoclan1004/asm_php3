@@ -36,7 +36,7 @@
                             {{-- <span class="icon icon-person"></span> --}}
                             @auth
                             <div class="dropdown">
-                                <a href="#" class="nav-link font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500" id="navbarDropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a href="{{ route('profile') }}" class="nav-link font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500" id="navbarDropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
         

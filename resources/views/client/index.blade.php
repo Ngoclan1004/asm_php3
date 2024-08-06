@@ -1,5 +1,11 @@
 @extends('client.layouts.master')
 @section('content')
+
+@if(session('message'))
+    <script>
+        alert('{{ session('message') }}')
+    </script>
+@endif 
     {{-- <div class="site-blocks-cover" style="background-image: url(client/images/hero_1.jpg);" data-aos="fade">
         <div class="container">
             <div class="row align-items-start align-items-md-center justify-content-end">
@@ -20,7 +26,7 @@
     <div>
         {{-- <img src="https://kilala.vn/data/uploads/2023/271220231621-1703668918-kimihana.jpg" alt="" width="100%"> --}}
     
-        @foreach ($data['post'] as $value)
+        @foreach ($post as $value)
            
             <img src="{{ Storage::url($value->img ) }}" alt="" width="100%">
         @endforeach
@@ -70,7 +76,7 @@
     <div class="site-section site-blocks-2">
         <div class="container">
             <div class="row">
-                @foreach ($data['danhmuc'] as $value)
+                @foreach ($danhmuc as $value)
                     <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
 
                         <a class="block-2-item" href="#">
@@ -101,7 +107,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="nonloop-block-3 owl-carousel">
-                        @foreach ($data['sanpham'] as $value)
+                        @foreach ($sanpham as $value)
                             <div class="item">
                                 <div class="block-4 text-center">
                                     <figure class="block-4-image">

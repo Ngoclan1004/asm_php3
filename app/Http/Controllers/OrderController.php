@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderDetail;
+use Darryldecode\Cart\Facades\CartFacade as Cart;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -19,10 +24,9 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $carts = session()->get('cart', []);
-        dd($carts);
+        $carts = Cart::getContent();
         if (!empty($carts)) {
-            dd('aaaa');
+            // $order_code = \Str::random(10);
             $total = 0;
             $subTotal = 0;
             foreach($carts as $item) {
@@ -42,7 +46,32 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // them don hang
+        $data = $request->all();
+        $data['ma_don_hang'] = \Str::random(10);
+        $data['user_id'] = Auth::user()->id ?? '' ;
+        $order = Order::create($data);
+        // dd($order);
+        // them chi tiet don hang
+        $carts = Cart::getContent();
+        foreach($carts as $cart){
+            $data = [
+                'order_id' => $order->id,
+                'product_id' => $cart->id,
+                             
+                'so_luong' => $cart->quantity,
+                'don_gia' => $cart->price,
+                'thanh_tien' => $cart->price * $cart->quantity,
+
+            ];
+            OrderDetail::create($data);
+        }
+        Cart::clear();
+        return redirect('/order/thank-you')->with('message','Đặt hàng thành công');
+
+    }
+    public function thank(){
+        return view('client.order.thankyou');
     }
 
     /**

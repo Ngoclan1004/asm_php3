@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 
@@ -20,9 +21,10 @@ class CartController extends Controller
             'id' => 'required',
             'name' => 'required',
             'price' => 'required|numeric',
-            'quantity' => 'required|numeric|min:1'
+            'quantity' => 'required|numeric|min:1',
+            
         ]);
-
+        
         // Add item to the cart
         Cart::add([
             'id' => $request->id,
@@ -30,10 +32,10 @@ class CartController extends Controller
             'price' => $request->price,
             'quantity' => $request->quantity,
             'attributes' => [
-                'img' => $request->img
+                'img' => $request->image
             ]
         ]);
-
+        
         return redirect()->route('cart.index')->with('success', 'Product added to cart!');
     }
 

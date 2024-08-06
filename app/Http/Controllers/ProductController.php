@@ -26,11 +26,11 @@ class ProductController extends Controller
     
     public function indexUser()
     {
-        $data['sanpham'] = DB::table('products')->get();
-        $data['danhmuc'] = DB::table('categories')->get();
-        $data['post'] = DB::table('banners')->get();
+        $sanpham = DB::table('products')->get();
+        $danhmuc = DB::table('categories')->get();
+        $post = DB::table('banners')->get();
         // dd($data['post']);
-        return view('client.index', compact('data'));
+        return view('client.index', compact('data','danhmuc','sanpham'));
 
     }
 

@@ -36,13 +36,15 @@
                                     @foreach ($cartItems as $item)
                                         <tr>
                                             <td class="product-thumbnail">
-                                                <img src="{{ Storage::url($item->img) }}" alt="" class="img-fluid">
+                                              
+                                                <img src="{{ Storage::url($item->attributes->img) }}" alt="" class="img-fluid">
                                             </td>
                                             <td class="product-name">
                                                 <h2 class="h5 text-black">{{ $item->name }}</h2>
                                             </td>
                                             <td class="product-price js-price" data-price="{{ $item->price }}">
                                                 {{ number_format($item->price) }}₫ </td>
+                                                <input type="hidden" name="" class="js-prices" value="{{ $item->price }}">
                                             <td>
 
                                                 <div class="input-group mb-3" style="max-width: 120px;">
@@ -52,11 +54,11 @@
                                                     </div>
                                                     <input type="hidden" name="id" value="{{ $item->id }}">
                                                     <input type="" class="form-control text-center js-quantity-input"
-                                                        value="{{ $item->quantity }}" min="1" step="1" max="100" placeholder=""
+                                                        value="{{ $item->quantity }}" min="1"  max="100" placeholder=""
                                                         name="quantity" aria-label="Example text with button addon"
                                                         aria-describedby="button-addon1" aria-label="Quantity">
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-outline-primary js-btn-plus"
+                                                        <button  class="btn btn-outline-primary js-btn-plus"
                                                             type="button">&plus;</button>
                                                     </div>
                                                 </div>
@@ -78,7 +80,7 @@
                                 <a href="{{ route('order.create') }}" class="btn btn-primary btn-sm btn-block">Proceed Checkout</a>
                             </div>
                             <div class="col-md-6">
-                                <a href="{{ url('') }}" class="btn btn-outline-primary btn-sm btn-block">Continue
+                                <a href="{{ url('/home') }}" class="btn btn-outline-primary btn-sm btn-block">Continue
                                     Shopping</a>
                             </div>
                         </div>
