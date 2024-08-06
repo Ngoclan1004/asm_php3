@@ -30,7 +30,7 @@ class ProductController extends Controller
         $danhmuc = DB::table('categories')->get();
         $post = DB::table('banners')->get();
         // dd($data['post']);
-        return view('client.index', compact('data','danhmuc','sanpham'));
+        return view('client.index', compact('post','danhmuc','sanpham'));
 
     }
 
@@ -135,5 +135,10 @@ class ProductController extends Controller
         DB::table('products')->where('id', $id)->delete();
         return back();
     
+    }
+
+    public function products(){
+        $data['product'] = DB::table('products')->get();
+        return view('client.product', $data);
     }
 }

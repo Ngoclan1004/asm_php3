@@ -49,6 +49,9 @@ Route::put('/danhmuc/{id}/update', [CategoryController::class, 'update'])->name(
 //Client
 
 Route::get('/', [ProductController::class, 'indexUser'])->name('user.index');
+Route::get('profile', [HomeController::class, 'profile'])->name('profile');
+Route::get('donhangct/{id}', [OrderController::class, 'donhangct'])->name('donhangct');
+Route::get('products', [ProductController::class, 'products']);
 // Route::get('/product/{id}', [ProductController::class, 'detail'])->name('product.detail');
 // Route::get('/product/show/{id}', [ProductController::class, 'show'])->name('products.show');
 // Route::get('/product/cart.{id}', [ProductController::class, 'addToCart'])->name('addproduct.to.cart');
@@ -127,4 +130,3 @@ Route::prefix('banner')
     Route::get('/member', [MemberController::class, 'dashboard'])->name('member.dashboard')->middleware(['auth', IsMember::class]);
 
     // Route::get('homebanner', [BannerController::class, 'indexUser'])->name('homebanner');
-    Route::get('profile', [HomeController::class, 'profile'])->name('profile');

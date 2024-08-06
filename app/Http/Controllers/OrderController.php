@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
-use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -17,6 +18,12 @@ class OrderController extends Controller
     public function index()
     {
         //
+    }
+    public function donhangct(string $id){
+        $model = DB::table('orders')->where('id', $id)->first();
+        // dd($model);
+        $orderDetails = OrderDetail::where('order_id',$model->id)->get();
+        return view('client.donhangct', compact('model','orderDetails'));
     }
 
     /**

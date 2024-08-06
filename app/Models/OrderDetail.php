@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class OrderDetail extends Model
 {
     use HasFactory;
+    protected $table = 'order_details';
+    protected $primaryKey = 'id';
+    protected $guarded = [];
 
     protected $fillable = [
         'order_id',
@@ -22,6 +25,6 @@ class OrderDetail extends Model
         return $this->belongsTo(Order::class);
     }
     public function Product(){
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class,'product_id','id');
     }
 }

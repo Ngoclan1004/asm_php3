@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+    protected $table = 'orders';
+    protected $primaryKey = 'id';
+    protected $guarded = [];
 
     const TRANG_THAI_DON_HANG = [
         'cho_xac_nhan'=>'Chờ xác nhận',  
@@ -62,7 +65,7 @@ class Order extends Model
     }
 
     public function OrderDetail(){
-        return $this->hasMany(OrderDetail::class);
+        return $this->hasMany(OrderDetail::class,'order_id','id');
     }
     
 }

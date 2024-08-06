@@ -37,8 +37,9 @@ class HomeController extends Controller
         return view('client.index', $data);
     }
 
-    function profile( ){
+    public function profile( ){
         $order = Order::query()->where('user_id', Auth::user()->id)->get();
         return view('client.donhang', compact('order'));
     }
+  
 }
